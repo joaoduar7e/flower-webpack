@@ -43,7 +43,8 @@
           {{ item.authors }}
         </b-col>
         <b-col cols="2">
-          {{ item.authors }}
+          <button type="button" class="btn" @click="remove(item)">Delete</button>
+          <button type="button" class="btn cor-editar" @click="remove(item)">Editar</button>
         </b-col>
       </b-row>
     </b-container>
@@ -92,6 +93,9 @@ export default {
         }, response => {
         console.log(response);
         });
+  }, 
+    remove(flower){
+      alert('Remover a foto, ' + flower.name)
   }
 }
 };
@@ -128,6 +132,14 @@ html {
   text-align: center;
 }
 
+.btn{
+  border-radius: none;
+  color: red;
+}
+
+.cor-editar{
+  color: green;
+}
 /* CSS */
 .button-36 {
   background-image: linear-gradient(
