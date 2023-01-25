@@ -7,14 +7,40 @@
     <br />
     <br />
     <br />
-    <b-container class="bv-example-row">
+
+    <b-container v-show="!createFlower" class="bv-example-row">
       <b-row>
         <b-col cols="8"></b-col>
         <b-col cols="4">
-          <button class="button-36" role="button" @click="newFlower">Novo</button></b-col
+          <button class="button-36" role="button" @click="close">
+            Novo
+          </button></b-col
         >
       </b-row>
     </b-container>
+
+    
+    <div v-show="createFlower">
+      <div>
+        <label>Nome da plantaa</label>
+        <input type="text" v-model="newF.name" />
+
+        <label>Nome Cient</label>
+        <input type="text" v-model="newF.authors" />
+
+        <label>Descrição</label>
+        <input type="text" v-model="newF.description" />
+
+        <label>Uso da planta</label>
+        <input type="text" v-model="newF.use" />
+
+        <label>Link da imagem</label>
+        <input type="text" v-model="newF.img" />
+
+        <button class="btn-primary w-100" @click="addItem()">Salvar</button>
+        <button class="btn-primary w-100" @click="close()">Cancelar</button>
+      </div>
+    </div>
 
     <br />
     <br />
@@ -43,8 +69,12 @@
           {{ item.authors }}
         </b-col>
         <b-col cols="2">
-          <button type="button" class="btn" @click="remove(item)">Delete</button>
-          <button type="button" class="btn cor-editar" @click="remove(item)">Editar</button>
+          <button type="button" class="btn" @click="removeItem(item.id)">
+            Delete
+          </button>
+          <button type="button" class="btn cor-editar" @click="remove(item)">
+            Editar
+          </button>
         </b-col>
       </b-row>
     </b-container>
@@ -52,55 +82,76 @@
 </template>
 
 <script>
-import Panel from "../components/shared/Panel.vue";
 import Image from "../components/shared/Image.vue";
+import api from "../../service/api";
 
 export default {
   components: {
-    "panel": Panel,
     "first-image": Image
   },
 
   data() {
     return {
       titulo: "Lista",
+      createFlower: false,
       flowers: [],
       newF: {
-    "id": 4,
-    "name": "Hortelã",
-    "authors": "Mentha spicata",
-    "description": "A hortelã comum, conhecida cientificamente como Mentha spicata, é uma planta medicinal e aromática, com propriedades que ajudam a tratar problemas digestivos, como má digestão, enjoo ou vômitos, por exemplo, e também tem efeitos calmantes e expectorantes.",
-    "use": "Mentha spicata",
-    "img": "https://www.gamespot.com/a/uploads/original/3/37852/3991061-stalker.jpg"
-}
+        id: 0,
+        name: "",
+        authors: "",
+        description: "",
+        use: "",
+        img: ""
+      }
     };
   },
 
   created() {
-    this.$http
-      .get("http://localhost:3001/flowers")
-      .then(res => res.json())
-      .then(flowers => (this.flowers = flowers));
+    this.getFlower();
   },
 
-
   methods: {
-    newFlower(){
-      this.$http
-      .post("http://localhost:3001/flowers", this.newF)
-      .then(response => {
-        console.log(response);
-        }, response => {
-        console.log(response);
+    getFlower() {
+      api
+        .get("/flowers")
+        .then(res => {
+          this.flowers = res.data;
+        })
+        .catch(error => {
+          console.log(error);
         });
-  }, 
-    remove(flower){
-      alert('Remover a foto, ' + flower.name)
+    },
+
+    addItem() {
+      const res = api.post(`/flowers`, {
+        name: this.newF.name,
+        authors: this.newF.authors,
+        description: this.newF.description,
+        use: this.newF.use,
+        img: this.newF.img
+      });
+      this.flowers = [...this.flowers, res.data];
+    },
+
+    close() {
+      (this.newF.name = ""),
+        (this.newF.authors = ""),
+        (this.newF.description = ""),
+        (this.newF.use = ""),
+        (this.newF.img = ""),
+        (this.createFlower = !this.createFlower);
+    },
+
+    removeItem(id) {
+      api.delete(`/flowers/${id}`);
+      this.flowers = this.flowers.filter(flowers => flowers.id !== id);
+    },
+
+    remove(flower) {
+      alert("Remover a foto, " + flower.name);
+    }
   }
-}
 };
-
-
 </script>
 
 <style scoped>
@@ -132,12 +183,12 @@ html {
   text-align: center;
 }
 
-.btn{
+.btn {
   border-radius: none;
   color: red;
 }
 
-.cor-editar{
+.cor-editar {
   color: green;
 }
 /* CSS */
