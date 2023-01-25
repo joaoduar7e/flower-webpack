@@ -1,14 +1,6 @@
 {
   "flowers": [
     {
-      "id": 1,
-      "name": "Hortelã",
-      "authors": "Mentha spicata",
-      "description": "A hortelã comum, conhecida cientificamente como Mentha spicata, é uma planta medicinal e aromática, com propriedades que ajudam a tratar problemas digestivos, como má digestão, enjoo ou vômitos, por exemplo, e também tem efeitos calmantes e expectorantes.",
-      "use": "Mentha spicata",
-      "img": "https://www.gamespot.com/a/uploads/original/3/37852/3991061-stalker.jpg"
-    },
-    {
       "name": "tonha",
       "authors": "tonha",
       "description": "tonha",

@@ -19,7 +19,6 @@
       </b-row>
     </b-container>
 
-    
     <div v-show="createFlower">
       <div>
         <label>Nome da plantaa</label>
@@ -38,7 +37,7 @@
         <input type="text" v-model="newF.img" />
 
         <button class="btn-primary w-100" @click="addItem()">Salvar</button>
-        <button class="btn-primary w-100" @click="close()">Cancelar</button>
+        <button class="btn-primary w-100" @click="close">Cancelar</button>
       </div>
     </div>
 
@@ -74,6 +73,9 @@
           </button>
           <button type="button" class="btn cor-editar" @click="remove(item)">
             Editar
+          </button>
+          <button type="button" class="btn cor-view" @click="remove(item)">
+            Visualizar
           </button>
         </b-col>
       </b-row>
@@ -124,6 +126,7 @@ export default {
 
     addItem() {
       const res = api.post(`/flowers`, {
+        id: 0,
         name: this.newF.name,
         authors: this.newF.authors,
         description: this.newF.description,
@@ -131,10 +134,11 @@ export default {
         img: this.newF.img
       });
       this.flowers = [...this.flowers, res.data];
+      this.createFlower = !this.createFlower
     },
 
     close() {
-      (this.newF.name = ""),
+        (this.newF.name = ""),
         (this.newF.authors = ""),
         (this.newF.description = ""),
         (this.newF.use = ""),
@@ -190,6 +194,9 @@ html {
 
 .cor-editar {
   color: green;
+}
+.cor-view {
+  color: blue;
 }
 /* CSS */
 .button-36 {
