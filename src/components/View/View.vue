@@ -1,7 +1,7 @@
 <template>
   <div>
  
-  oi
+    oi
 
   </div>
 </template>
@@ -11,7 +11,6 @@
 export default {
 data() {
   return {
-    msg: "oi"
   }
 }
 }

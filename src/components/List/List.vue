@@ -22,19 +22,19 @@
     <div v-show="createFlower">
       <div>
         <label>Nome da plantaa</label>
-        <input type="text" v-model="newF.name" />
+        <input type="text" v-model="flower.name" />
 
         <label>Nome Cient</label>
-        <input type="text" v-model="newF.authors" />
+        <input type="text" v-model="flower.authors" />
 
         <label>Descrição</label>
-        <input type="text" v-model="newF.description" />
+        <input type="text" v-model="flower.description" />
 
         <label>Uso da planta</label>
-        <input type="text" v-model="newF.use" />
+        <input type="text" v-model="flower.use" />
 
         <label>Link da imagem</label>
-        <input type="text" v-model="newF.img" />
+        <input type="text" v-model="flower.img" />
 
         <button class="btn-primary w-100" @click="addItem()">Salvar</button>
         <button class="btn-primary w-100" @click="close">Cancelar</button>
@@ -74,15 +74,17 @@
           <button type="button" class="btn cor-editar" @click="remove(item)">
             Editar
           </button>
-          <button type="button" class="btn cor-view" @click="remove(item)">
-            Visualizar
-          </button>
+
+          <router-link to="/view">
+            <button type="button" class="btn cor-view" @click="remove(item)">
+              Visualizar
+            </button>
+          </router-link>
         </b-col>
       </b-row>
     </b-container>
 
-    <router-link to="/view">oi
-    </router-link>
+    <router-link to="/view">oi </router-link>
   </div>
 </template>
 
@@ -94,15 +96,16 @@ import api from "../../../service/api";
 export default {
   components: {
     "first-image": Image,
-    "view": View
+    view: View
   },
 
   data() {
     return {
       titulo: "Lista",
       createFlower: false,
+      editIndex: -1,
       flowers: [],
-      newF: {
+      flower: {
         id: 0,
         name: "",
         authors: "",
@@ -132,22 +135,22 @@ export default {
     addItem() {
       const res = api.post(`/flowers`, {
         id: 0,
-        name: this.newF.name,
-        authors: this.newF.authors,
-        description: this.newF.description,
-        use: this.newF.use,
-        img: this.newF.img
+        name: this.flower.name,
+        authors: this.flower.authors,
+        description: this.flower.description,
+        use: this.flower.use,
+        img: this.flower.img
       });
       this.flowers = [...this.flowers, res.data];
       this.createFlower = !this.createFlower;
     },
 
     close() {
-      (this.newF.name = ""),
-        (this.newF.authors = ""),
-        (this.newF.description = ""),
-        (this.newF.use = ""),
-        (this.newF.img = ""),
+      (this.flower.name = ""),
+        (this.flower.authors = ""),
+        (this.flower.description = ""),
+        (this.flower.use = ""),
+        (this.flower.img = ""),
         (this.createFlower = !this.createFlower);
     },
 
@@ -156,8 +159,14 @@ export default {
       this.flowers = this.flowers.filter(flowers => flowers.id !== id);
     },
 
+    edit(flower) {
+      this.flower = Object.assign({},this.flower);
+      this.editIndex = this.flowers.indexOf(this.flowers.find(u => u.id === this.flower.id));
+      this.dialog = true;
+    },
+
     remove(flower) {
-      alert("Remover a foto, " + flower.name);
+      console.log(OI)
     }
   }
 };

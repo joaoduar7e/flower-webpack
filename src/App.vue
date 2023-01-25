@@ -1,7 +1,7 @@
 <template>
   <header>
     <div id="app">
-      <List msg="Flowers" />
+      <router-view></router-view>
     </div>
   </header>
 </template>
