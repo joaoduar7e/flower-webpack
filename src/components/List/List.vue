@@ -80,16 +80,21 @@
         </b-col>
       </b-row>
     </b-container>
+
+    <router-link to="/view">oi
+    </router-link>
   </div>
 </template>
 
 <script>
-import Image from "../components/shared/Image.vue";
-import api from "../../service/api";
+import Image from "../shared/Image.vue";
+import View from "../View/View.vue";
+import api from "../../../service/api";
 
 export default {
   components: {
-    "first-image": Image
+    "first-image": Image,
+    "view": View
   },
 
   data() {
@@ -134,11 +139,11 @@ export default {
         img: this.newF.img
       });
       this.flowers = [...this.flowers, res.data];
-      this.createFlower = !this.createFlower
+      this.createFlower = !this.createFlower;
     },
 
     close() {
-        (this.newF.name = ""),
+      (this.newF.name = ""),
         (this.newF.authors = ""),
         (this.newF.description = ""),
         (this.newF.use = ""),

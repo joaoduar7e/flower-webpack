@@ -17,7 +17,8 @@
     "bootstrap-vue": "^2.23.1",
     "json-server": "^0.17.1",
     "vue": "^2.7.14",
-    "vue-resource": "^1.5.3"
+    "vue-resource": "^1.5.3",
+    "vue-router": "^3.5.1"
   },
   "browserslist": [
     "> 1%",

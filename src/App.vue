@@ -7,12 +7,18 @@
 </template>
 
 <script>
-import List from "./components/List.vue";
+import { routes } from './routes';
+import List from "./components/List/List.vue";
 
 export default {
   name: "App",
   components: {
     List
+  },
+  data() {
+    return {
+      routes
+    }
   }
 };
 </script>
