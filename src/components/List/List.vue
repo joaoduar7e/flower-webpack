@@ -75,16 +75,15 @@
             Editar
           </button>
 
-          <router-link to="/view">
-            <button type="button" class="btn cor-view" @click="remove(item)">
+          <router-link :to="`/view/${item.id}`">
+            <button type="button" class="btn cor-view">
               Visualizar
             </button>
           </router-link>
         </b-col>
       </b-row>
-    </b-container>
+    </b-container>/
 
-    <router-link to="/view">oi </router-link>
   </div>
 </template>
 

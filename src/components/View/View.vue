@@ -1,21 +1,18 @@
 <template>
   <div>
- 
-    oi
-
+    {{ id }}
   </div>
 </template>
 
 <script>
-
 export default {
-data() {
-  return {
+  props: ["id"],
+  data() {
+    return {
+      flower:[]
+    };
   }
-}
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
