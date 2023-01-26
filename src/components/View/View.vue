@@ -24,7 +24,6 @@
           <img class="imagem-responsiva" :src="flower.img" alt="" />
         </div>
       </div>
-
       <div class="info">
         <label class="type-title">Uso da planta</label>
         <p class="type-info">{{ flower.authors }}</p>
@@ -64,6 +63,7 @@ export default {
 </script>
 
 <style scoped>
+
 .body {
   margin: 0px;
   padding: 0px;
@@ -71,7 +71,7 @@ export default {
 }
 
 .div-img-principal{
-  margin: 0 auto;
+  margin: -50px auto auto auto;
   max-width: 540px;
   text-align: center;
   display: flex;
@@ -127,6 +127,7 @@ export default {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  object-fit: cover;
     
   border-radius: 16px;
 }

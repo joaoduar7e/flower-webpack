@@ -12,7 +12,12 @@
       <b-row>
         <b-col cols="8"></b-col>
         <b-col cols="4">
-          <button class="button-36" role="button" @click="close">
+          <button
+            class="button-59"
+            style="float: right;"
+            role="button"
+            @click="close"
+          >
             Novo
           </button></b-col
         >
@@ -20,24 +25,46 @@
     </b-container>
 
     <div v-show="createFlower">
-      <div>
-        <label>Nome da plantaa</label>
-        <input type="text" v-model="flower.name" />
+      <div class="forms">
+        <div class="group">
+          <input type="text" v-model="flower.name" required />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Nome da planta</label>
+        </div>
 
-        <label>Nome Cient</label>
-        <input type="text" v-model="flower.authors" />
+        <div class="group">
+          <input type="text" v-model="flower.authors" required />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Nome científico</label>
+        </div>
 
-        <label>Descrição</label>
-        <input type="text" v-model="flower.description" />
+        <div class="group">
+          <input type="text" v-model="flower.description" required />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Sobre a planta</label>
+        </div>
 
-        <label>Uso da planta</label>
-        <input type="text" v-model="flower.use" />
+        <div class="group">
+          <input type="text" v-model="flower.use" required />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Uso da planta</label>
+        </div>
 
-        <label>Url da imagem</label>
-        <input type="text" v-model="flower.img" />
+        <div class="group">
+          <input type="text" v-model="flower.img" required />
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Url da imagem</label>
+        </div>
+      </div>
 
-        <button class="btn-primary w-100" @click="addItem()">Salvar</button>
-        <button class="btn-primary w-100" @click="close">Cancelar</button>
+      <div class="div-buttons">
+        <button class="button-59" @click="close">Cancelar</button>
+        <button class="button-59" @click="addItem()">Salvar</button>
       </div>
     </div>
 
@@ -74,16 +101,21 @@
           <button type="button" class="btn cor-editar" @click="remove(item)">
             Editar
           </button>
-
           <router-link :to="`/view/${item.id}`">
             <button type="button" class="btn cor-view">
               Visualizar
             </button>
           </router-link>
+          <button
+            type="button"
+            class="btn cor-editar"
+            @click="copyLink(item.id)"
+          >
+            Copiar
+          </button>
         </b-col>
       </b-row>
-    </b-container>/
-
+    </b-container>
   </div>
 </template>
 
@@ -158,24 +190,37 @@ export default {
       this.flowers = this.flowers.filter(flowers => flowers.id !== id);
     },
 
+    copyLink(item) {
+      const el = document.createElement("textarea");
+      el.value = "http://localhost:8080/view/" + item;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+    },
+
     edit(flower) {
-      this.flower = Object.assign({},this.flower);
-      this.editIndex = this.flowers.indexOf(this.flowers.find(u => u.id === this.flower.id));
+      this.flower = Object.assign({}, this.flower);
+      this.editIndex = this.flowers.indexOf(
+        this.flowers.find(u => u.id === this.flower.id)
+      );
       this.dialog = true;
     },
 
     remove(flower) {
-      console.log(OI)
+      console.log("oi");
     }
   }
 };
 </script>
 
 <style scoped>
+@import url("../../assets/styles/input.css");
+@import url("../../assets/styles/button.css");
+
 html {
   scroll-behavior: smooth;
 }
-
 .body {
   margin: 0px;
   padding: 0px;
@@ -212,43 +257,13 @@ html {
   color: blue;
 }
 /* CSS */
-.button-36 {
-  background-image: linear-gradient(
-    92.88deg,
-    #49c163 9.16%,
-    #40cd33 43.89%,
-    #07ea1a 64.72%
-  );
-  border-radius: 8px;
-  border-style: none;
-  box-sizing: border-box;
-  color: #ffffff;
-  cursor: pointer;
-  flex-shrink: 0;
-  font-family: "Inter UI", "SF Pro Display", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-    sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 4rem;
-  padding: 0 1.6rem;
-  text-align: center;
-  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
-  transition: all 0.5s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  float: right;
-}
 
-.button-36:hover {
-  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
-  transition-duration: 0.1s;
-}
-
-@media (min-width: 768px) {
-  .button-36 {
-    padding: 0 2.6rem;
-  }
+.forms {
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 800px;
+  justify-content: center;
+  margin: 0 auto;
 }
 </style>
