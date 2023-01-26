@@ -33,7 +33,7 @@
         <label>Uso da planta</label>
         <input type="text" v-model="flower.use" />
 
-        <label>Link da imagem</label>
+        <label>Url da imagem</label>
         <input type="text" v-model="flower.img" />
 
         <button class="btn-primary w-100" @click="addItem()">Salvar</button>
