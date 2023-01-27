@@ -173,6 +173,7 @@ export default {
         img: this.flower.img
       });
       this.flowers = [...this.flowers, res.data];
+      window.location.reload();
       this.createFlower = !this.createFlower;
     },
 
