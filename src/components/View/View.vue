@@ -155,6 +155,10 @@ body {
     margin: 0px;
     margin-top: 10px;
   }
+
+  .img-principal {
+  border-radius: 0px 0px 0px 80px;
+}
 }
 .imagem-responsiva {
   width: 100%;
