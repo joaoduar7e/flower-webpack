@@ -24,7 +24,7 @@
       </b-row>
     </b-container>
 
-    <div v-show="createFlower">
+    <div class="newFlower" v-show="createFlower">
       <div class="forms">
         <div class="group">
           <input type="text" v-model="flower.name" required />
@@ -41,10 +41,13 @@
         </div>
 
         <div class="group">
-          <input type="text" v-model="flower.description" required />
-          <span class="highlight"></span>
-          <span class="bar"></span>
-          <label>Sobre a planta</label>
+          <p>Sobre</p>
+          <b-form-textarea
+            style="width: 300px;"
+            v-model="flower.description"
+            required
+          >
+          </b-form-textarea>
         </div>
 
         <div class="group">
@@ -76,10 +79,9 @@
       <b-row class="justify-content-md-center Table-header">
         <b-col cols="2"> #ID </b-col>
         <b-col cols="5"> Nome </b-col>
-        <b-col cols="3"> Nome cliente </b-col>
-        <b-col cols="2"> Ações</b-col>
+        <b-col cols="5"> Ações</b-col>
       </b-row>
-
+    
       <b-row
         class="justify-content-md-center Table-body"
         v-for="item in flowers"
@@ -91,29 +93,24 @@
         <b-col cols="5">
           {{ item.name }}
         </b-col>
-        <b-col cols="3">
-          {{ item.authors }}
-        </b-col>
-        <b-col cols="2">
+        <b-col cols="5">
           <button type="button" class="btn" @click="removeItem(item.id)">
             Delete
           </button>
           <button type="button" class="btn cor-editar" @click="remove(item)">
             Editar
           </button>
-          <router-link :to="`/view/${item.id}`">
+          <!-- <router-link :to="`/view/${item.id}`">
             <button type="button" class="btn cor-view">
               Visualizar
             </button>
-          </router-link>
-          <button
-            type="button"
-            class="btn cor-editar"
-            @click="copyLink(item.id)"
-          >
+          </router-link> -->
+          <button type="button" class="btn cor-view" @click="copyLink(item.id)">
             Copiar
           </button>
+          
         </b-col>
+        <hr class="line"> 
       </b-row>
     </b-container>
   </div>
@@ -178,17 +175,21 @@ export default {
     },
 
     close() {
-      (this.flower.name = ""),
+        (this.flower.name = ""),
         (this.flower.authors = ""),
         (this.flower.description = ""),
         (this.flower.use = ""),
         (this.flower.img = ""),
         (this.createFlower = !this.createFlower);
+        window.scrollTo(0, 0);
     },
 
     removeItem(id) {
-      api.delete(`/flowers/${id}`);
-      this.flowers = this.flowers.filter(flowers => flowers.id !== id);
+      if (confirm("Confirmar deletar?")) {
+        api.delete(`/flowers/${id}`);
+        this.flowers = this.flowers.filter(flowers => flowers.id !== id);
+      }
+      return;
     },
 
     copyLink(item) {
@@ -222,6 +223,22 @@ export default {
 html {
   scroll-behavior: smooth;
 }
+
+.line{
+  border-top: 1px solid #c8c8c8;
+}
+
+p {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
 .body {
   margin: 0px;
   padding: 0px;
@@ -231,7 +248,6 @@ html {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  position: fixed;
   width: 100%;
 }
 .Table-header {
@@ -259,12 +275,23 @@ html {
 }
 /* CSS */
 
-.forms {
-  padding-top: 20px;
+.newFlower {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 540px) {
+  .div-buttons {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  flex-wrap: wrap;
   margin: 0 auto;
 }
 </style>

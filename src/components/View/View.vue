@@ -1,15 +1,14 @@
 <template>
-  <div class="body">
-
+  <body>
     <div class="div-img-principal">
-          <img class="img-principal" :src="flower.img" alt="" />
+      <img class="img-principal" :src="flower.img" alt="" />
     </div>
 
     <div class="title">
       {{ flower.name }}
     </div>
 
-    <section>
+    <section class="all-infos">
       <div class="info">
         <label class="type-title">Nome científico</label>
         <p class="type-info">{{ flower.authors }}</p>
@@ -20,8 +19,19 @@
       </div>
       <div class="info">
         <label class="type-title">Imagem</label>
-        <div class="card">
-          <img class="imagem-responsiva" :src="flower.img" alt="" />
+        <div class="info-img">
+          <div class="card">
+            <img class="imagem-responsiva" :src="flower.img" alt="" />
+          </div>
+          <div class="card">
+            <img class="imagem-responsiva" :src="flower.img" alt="" />
+          </div>
+          <div class="card">
+            <img class="imagem-responsiva" :src="flower.img" alt="" />
+          </div>
+          <div class="card">
+            <img class="imagem-responsiva" :src="flower.img" alt="" />
+          </div>
         </div>
       </div>
       <div class="info">
@@ -29,7 +39,7 @@
         <p class="type-info">{{ flower.authors }}</p>
       </div>
     </section>
-  </div>
+  </body>
 </template>
 
 <script>
@@ -63,26 +73,25 @@ export default {
 </script>
 
 <style scoped>
-
-.body {
+body {
   margin: 0px;
   padding: 0px;
   font-family: "Quicksand";
 }
 
-.div-img-principal{
+.div-img-principal {
   margin: -50px auto auto auto;
   max-width: 540px;
   text-align: center;
   display: flex;
   justify-content: center;
 }
-.img-principal{
+.img-principal {
   width: 100%;
-  height:  100%;
+  height: 100%;
   display: block;
-    margin-left: auto;
-    margin-right: auto
+  margin-left: auto;
+  margin-right: auto;
 }
 .title {
   font-family: "Quicksand";
@@ -91,6 +100,10 @@ export default {
   font-size: 22px;
   line-height: 26px;
   text-align: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: #ffffff;
 }
 
 .info {
@@ -99,6 +112,16 @@ export default {
   max-width: 540px;
   justify-content: center;
   margin: 0 auto;
+}
+
+.info-img {
+  display: flex;
+  flex-direction: row;
+  max-width: 540px;
+  justify-content: center;
+  margin: 0 auto;
+  overflow-x: auto;
+  margin-right: 15px;
 }
 
 .type-title {
@@ -115,20 +138,32 @@ export default {
 }
 
 .card {
+  display: flex;
   max-width: 128px;
   height: 160px;
-
   border-radius: 16px;
 }
 
-.imagem-responsiva{ 
+@media screen and (max-width: 540px) {
+  .all-infos {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .info {
+    margin: 0px;
+    margin-top: 10px;
+  }
+}
+.imagem-responsiva {
   width: 100%;
   height: 100%;
   display: block;
   margin-left: auto;
   margin-right: auto;
   object-fit: cover;
-    
+
   border-radius: 16px;
 }
 </style>
