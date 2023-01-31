@@ -1,7 +1,7 @@
 <template>
   <body>
     <div class="div-img-principal">
-      <img class="img-principal" :src="flower.img" alt="" />
+      <img class="img-principal" :src="flower.first_img" alt="" />
     </div>
 
     <div class="title">
@@ -21,16 +21,12 @@
         <label class="type-title">Imagem</label>
         <div class="info-img">
           <div class="card">
-            <img class="imagem-responsiva" :src="flower.img" alt="" />
-          </div>
-          <div class="card">
-            <img class="imagem-responsiva" :src="flower.img" alt="" />
-          </div>
-          <div class="card">
-            <img class="imagem-responsiva" :src="flower.img" alt="" />
-          </div>
-          <div class="card">
-            <img class="imagem-responsiva" :src="flower.img" alt="" />
+            <img
+              class="imagem-responsiva"
+              v-for="(image, sequence) in flower.images"
+              :key="sequence"
+              :src="image.url"
+            />
           </div>
         </div>
       </div>
@@ -157,8 +153,8 @@ body {
   }
 
   .img-principal {
-  border-radius: 0px 0px 0px 80px;
-}
+    border-radius: 0px 0px 0px 80px;
+  }
 }
 .imagem-responsiva {
   width: 100%;

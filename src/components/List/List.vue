@@ -57,11 +57,29 @@
           <label>Uso da planta</label>
         </div>
 
+        <p>Imagem para capa</p>
         <div class="group">
-          <input type="text" v-model="flower.img" required />
+          <input type="text" v-model="flower.first_img" required />
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Url da imagem</label>
+        </div>
+
+        <p>Imagens para listagem</p>
+        <div
+          :key="`custom-url-${index}`"
+          v-for="(customUrl, index) in flower.images"
+          class="group"
+        >
+          <div class="pt-3 pl-3" style="min-width: 70px;">
+            <input type="text" v-model="customUrl.url" required />
+            <span class="highlight"></span>
+            <span class="bar"></span>
+            <label>Url da imagem</label>
+          </div>
+        </div>
+        <div>
+          <button class="button-59" style="width: 100%; margin-bottom: 10px;" @click="addNewImage">Adicionar nova imagem</button>
         </div>
       </div>
 
@@ -81,7 +99,7 @@
         <b-col cols="5"> Nome </b-col>
         <b-col cols="5"> Ações</b-col>
       </b-row>
-    
+
       <b-row
         class="justify-content-md-center Table-body"
         v-for="item in flowers"
@@ -108,9 +126,8 @@
           <button type="button" class="btn cor-view" @click="copyLink(item.id)">
             Copiar
           </button>
-          
         </b-col>
-        <hr class="line"> 
+        <hr class="line" />
       </b-row>
     </b-container>
   </div>
@@ -139,7 +156,8 @@ export default {
         authors: "",
         description: "",
         use: "",
-        img: ""
+        first_img: "",
+        images: []
       }
     };
   },
@@ -167,7 +185,8 @@ export default {
         authors: this.flower.authors,
         description: this.flower.description,
         use: this.flower.use,
-        img: this.flower.img
+        first_img: this.flower.first_img,
+        images: this.flower.images
       });
       this.flowers = [...this.flowers, res.data];
       window.location.reload();
@@ -175,13 +194,20 @@ export default {
     },
 
     close() {
-        (this.flower.name = ""),
+      (this.flower.name = ""),
         (this.flower.authors = ""),
         (this.flower.description = ""),
         (this.flower.use = ""),
-        (this.flower.img = ""),
+        (this.flower.first_img = ""),
         (this.createFlower = !this.createFlower);
-        window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
+    },
+
+    addNewImage() {
+      this.flower.images.push({
+        sequence: this.flower.images.length + 1,
+        url: ""
+      });
     },
 
     removeItem(id) {
@@ -224,7 +250,7 @@ html {
   scroll-behavior: smooth;
 }
 
-.line{
+.line {
   border-top: 1px solid #c8c8c8;
 }
 
