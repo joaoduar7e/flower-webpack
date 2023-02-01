@@ -33,32 +33,6 @@
           "url": "https://us-southeast-1.linodeobjects.com/storage/granhortifruti/media/uploads/produto/hortel_miudo_higienizada_suprema100g_b41b3262-46b4-45f1-aa96-505522c0795f.png"
         }
       ]
-    },
-    {
-      "id": 2,
-      "name": "Teste",
-      "authors": "Teste",
-      "description": "<h1>testes</h1><blockquote>oi teste</blockquote>",
-      "use": "Teste",
-      "first_img": "https://www.meistertask.com/embed/at/50769450/large/ae648ae1ef1e3cc5ad56dd1c590c84db4ef53517.png",
-      "images": [
-        {
-          "sequence": 1,
-          "url": "https://www.meistertask.com/embed/at/50769450/large/ae648ae1ef1e3cc5ad56dd1c590c84db4ef53517.png"
-        },
-        {
-          "sequence": 2,
-          "url": "https://www.meistertask.com/embed/at/50769450/large/ae648ae1ef1e3cc5ad56dd1c590c84db4ef53517.png"
-        },
-        {
-          "sequence": 3,
-          "url": "https://www.meistertask.com/embed/at/50769450/large/ae648ae1ef1e3cc5ad56dd1c590c84db4ef53517.png"
-        },
-        {
-          "sequence": 4,
-          "url": "https://www.meistertask.com/embed/at/50769450/large/ae648ae1ef1e3cc5ad56dd1c590c84db4ef53517.png"
-        }
-      ]
     }
   ]
 }
