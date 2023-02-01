@@ -13,25 +13,30 @@
         <label class="type-title">Nome científico</label>
         <p class="type-info">{{ flower.authors }}</p>
       </div>
-      
+
       <div class="info">
-        <label v-show="flower.description != ''"  class="type-title">Sobre</label>
-        <p class="type-info" v-html="flower.description" ></p>
+        <label v-show="flower.description != ''" class="type-title"
+          >Sobre</label
+        >
+        <p class="type-info" v-html="flower.description"></p>
       </div>
 
       <div class="info">
-        <label v-show="flower.images.length > 0" class="type-title">Imagem</label>
+        <label v-show="flower.images.length > 0" class="type-title"
+          >Imagem</label
+        >
         <div class="media-scroller snaps-inline">
           <div class="media-element" v-for="(image, sequence) in flower.images">
             <img :key="sequence" :src="image.url" />
           </div>
         </div>
       </div>
-        <div class="info">
-          <label v-show="flower.use != ''" class="type-title">Uso da planta</label>
-          <p class="type-info">{{ flower.use }}</p>
-        </div>
-
+      <div class="info">
+        <label v-show="flower.use != ''" class="type-title"
+          >Uso da planta</label
+        >
+        <p class="type-info">{{ flower.use }}</p>
+      </div>
     </section>
   </body>
 </template>
@@ -77,27 +82,43 @@ body {
 }
 
 .fadeIn {
--webkit-animation: fadeIn 3s ease-in-out;
--moz-animation: fadeIn 3s ease-in-out;
--o-animation: fadeIn 3s ease-in-out;
-animation: fadeIn 3s ease-in-out;
+  -webkit-animation: fadeIn 3s ease-in-out;
+  -moz-animation: fadeIn 3s ease-in-out;
+  -o-animation: fadeIn 3s ease-in-out;
+  animation: fadeIn 3s ease-in-out;
 }
 
 @-webkit-keyframes fadeIn {
-0% { opacity: 0; }
-100% { opacity: 1; } 
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @-moz-keyframes fadeIn {
-0% { opacity: 0;}
-100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @-o-keyframes fadeIn {
-0% { opacity: 0; }
-100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @keyframes fadeIn {
-0% { opacity: 0; }
-100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .div-img-principal {
   margin: -50px auto auto auto;
@@ -198,12 +219,9 @@ animation: fadeIn 3s ease-in-out;
   grid-auto-flow: column;
   grid-auto-columns: 40%;
 
-
   overflow-x: auto;
   overscroll-behavior-inline: contain;
-  
 }
-
 
 .snaps-inline {
   scroll-snap-type: inline mandatory;

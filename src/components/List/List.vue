@@ -98,7 +98,9 @@
 
       <div class="div-buttons">
         <button class="button-59" @click="close">Cancelar</button>
-        <button class="button-59" @click="addItem()" :disabled="submit" >Salvar</button>
+        <button class="button-59" @click="addItem()" :disabled="submit">
+          Salvar
+        </button>
       </div>
     </div>
 
