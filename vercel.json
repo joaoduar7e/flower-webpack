@@ -1,21 +1,20 @@
 {
-    "version": 2,
-    "routes": [
-        {
-            "src": "/list",
-            "dest": "/list"
-        },
-        {
-            "src": "/view/:id",
-            "dest": "/view/:id"
-        },
-        {
-            "src": "/*",
-            "dest": "/404"
-        },
-        {
-            "src": "/view/",
-            "dest": "/404"
-        }
-    ]
+  "routes": [
+    {
+      "src": "/list",
+      "dest": "/list"
+    },
+    {
+      "src": "/view/:id",
+      "dest": "/view/:id"
+    },
+    {
+      "src": "/*",
+      "dest": "/404"
+    },
+    {
+      "src": "/view/",
+      "dest": "/404"
+    }
+  ]
 }
