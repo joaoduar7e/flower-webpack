@@ -15,7 +15,7 @@
       </div>
       <div class="info">
         <label class="type-title">Sobre</label>
-        <p class="type-info">{{ flower.description }}</p>
+        <p class="type-info" v-html="flower.description" ></p>
       </div>
 
       <div class="info">
@@ -28,7 +28,7 @@
       </div>
         <div class="info">
           <label class="type-title">Uso da planta</label>
-          <p class="type-info">{{ flower.authors }}</p>
+          <p class="type-info">{{ flower.use }}</p>
         </div>
 
     </section>

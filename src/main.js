@@ -6,11 +6,14 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import router  from './routes';
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.snow.css';
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueResource);
 Vue.use(axios);
+Vue.use(VueQuillEditor);
 
 new Vue({
   el: '#app',

@@ -42,12 +42,14 @@
 
         <div class="group">
           <p>Sobre</p>
-          <b-form-textarea
+          <!-- <b-form-textarea
             style="width: 300px;"
             v-model="flower.description"
             required
           >
-          </b-form-textarea>
+          </b-form-textarea> -->
+
+          <quill-editor v-model="flower.description"> </quill-editor>
         </div>
 
         <div class="group">
@@ -79,7 +81,13 @@
           </div>
         </div>
         <div>
-          <button class="button-59" style="width: 100%; margin-bottom: 10px;" @click="addNewImage">Adicionar nova imagem</button>
+          <button
+            class="button-59"
+            style="width: 100%; margin-bottom: 10px;"
+            @click="addNewImage"
+          >
+            Adicionar nova imagem
+          </button>
         </div>
       </div>
 
@@ -137,6 +145,7 @@
 import Image from "../shared/Image.vue";
 import View from "../View/View.vue";
 import api from "../../../service/api";
+import "quill/dist/quill.snow.css";
 
 export default {
   components: {
@@ -189,7 +198,7 @@ export default {
         images: this.flower.images
       });
       this.flowers = [...this.flowers, res.data];
-      // window.location.reload();
+      window.location.reload();
       this.createFlower = !this.createFlower;
     },
 
