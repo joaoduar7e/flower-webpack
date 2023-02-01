@@ -14,12 +14,12 @@
         <p class="type-info">{{ flower.authors }}</p>
       </div>
       <div class="info">
-        <label class="type-title">Sobre</label>
+        <label v-show="flower.description != ''"  class="type-title">Sobre</label>
         <p class="type-info" v-html="flower.description" ></p>
       </div>
 
       <div class="info">
-        <label class="type-title">Imagem</label>
+        <label v-show="flower.images.length > 0" class="type-title">Imagem</label>
         <div class="media-scroller snaps-inline">
           <div class="media-element" v-for="(image, sequence) in flower.images">
             <img :key="sequence" :src="image.url" />
@@ -27,7 +27,7 @@
         </div>
       </div>
         <div class="info">
-          <label class="type-title">Uso da planta</label>
+          <label v-show="flower.use != ''" class="type-title">Uso da planta</label>
           <p class="type-info">{{ flower.use }}</p>
         </div>
 

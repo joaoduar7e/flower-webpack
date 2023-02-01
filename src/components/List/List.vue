@@ -27,14 +27,14 @@
     <div class="newFlower" v-show="createFlower">
       <div class="forms">
         <div class="group">
-          <input type="text" v-model="flower.name" required />
+          <input type="text" id="nome" v-model="flower.name" required />
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Nome da planta</label>
         </div>
 
         <div class="group">
-          <input type="text" v-model="flower.authors" required />
+          <input type="text" id="author" v-model="flower.authors" required />
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Nome científico</label>
@@ -49,11 +49,11 @@
           >
           </b-form-textarea> -->
 
-          <quill-editor v-model="flower.description"> </quill-editor>
+          <quill-editor id="about" v-model="flower.description"> </quill-editor>
         </div>
 
         <div class="group">
-          <input type="text" v-model="flower.use" required />
+          <input id="use" type="text" v-model="flower.use" required />
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Uso da planta</label>
@@ -61,7 +61,12 @@
 
         <p>Imagem para capa</p>
         <div class="group">
-          <input type="text" v-model="flower.first_img" required />
+          <input
+            id="firstimg"
+            type="text"
+            v-model="flower.first_img"
+            required
+          />
           <span class="highlight"></span>
           <span class="bar"></span>
           <label>Url da imagem</label>
@@ -188,18 +193,35 @@ export default {
     },
 
     addItem() {
-      const res = api.post(`/flowers`, {
-        id: 0,
-        name: this.flower.name,
-        authors: this.flower.authors,
-        description: this.flower.description,
-        use: this.flower.use,
-        first_img: this.flower.first_img,
-        images: this.flower.images
-      });
-      this.flowers = [...this.flowers, res.data];
-      window.location.reload();
-      this.createFlower = !this.createFlower;
+      if (document.getElementById("nome").value == "") {
+        alert("Por favor, preencha o campo");
+        document.getElementById("nome").focus();
+      } else if (document.getElementById("author").value == "") {
+        alert("Por favor, preencha o campo");
+        document.getElementById("author").focus();
+      } else if (document.getElementById("use").value == "") {
+        alert("Por favor, preencha o campo");
+        document.getElementById("use").focus();
+      } else if (document.getElementById("author").value == "") {
+        alert("Por favor, preencha o campo");
+        document.getElementById("author").focus();
+      } else if (document.getElementById("firstimg").value == "") {
+        alert("Por favor, preencha o campo");
+        document.getElementById("firstimg").focus();
+      } else {
+        const res = api.post(`/flowers`, {
+          id: 0,
+          name: this.flower.name,
+          authors: this.flower.authors,
+          description: this.flower.description,
+          use: this.flower.use,
+          first_img: this.flower.first_img,
+          images: this.flower.images
+        });
+        this.flowers = [...this.flowers, res.data];
+        window.location.reload();
+        this.createFlower = !this.createFlower;
+      }
     },
 
     close() {
