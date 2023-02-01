@@ -17,23 +17,20 @@
         <label class="type-title">Sobre</label>
         <p class="type-info">{{ flower.description }}</p>
       </div>
+
       <div class="info">
         <label class="type-title">Imagem</label>
-        <div class="info-img">
-          <div class="card">
-            <img
-              class="imagem-responsiva"
-              v-for="(image, sequence) in flower.images"
-              :key="sequence"
-              :src="image.url"
-            />
+        <div class="media-scroller snaps-inline">
+          <div class="media-element" v-for="(image, sequence) in flower.images">
+            <img :key="sequence" :src="image.url" />
           </div>
         </div>
       </div>
-      <div class="info">
-        <label class="type-title">Uso da planta</label>
-        <p class="type-info">{{ flower.authors }}</p>
-      </div>
+        <div class="info">
+          <label class="type-title">Uso da planta</label>
+          <p class="type-info">{{ flower.authors }}</p>
+        </div>
+
     </section>
   </body>
 </template>
@@ -69,6 +66,9 @@ export default {
 </script>
 
 <style scoped>
+@import "https://unpkg.com/open-props";
+@import "https://unpkg.com/open-props/normalize.min.css";
+
 body {
   margin: 0px;
   padding: 0px;
@@ -165,5 +165,27 @@ body {
   object-fit: cover;
 
   border-radius: 16px;
+}
+
+.media-scroller {
+  --_spacer: var(--size-3);
+  display: grid;
+  gap: var(--_spacer);
+  grid-auto-flow: column;
+  grid-auto-columns: 40%;
+
+
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  
+}
+
+.snaps-inline {
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: var(--_spacer, 1rem);
+}
+
+.snaps-inline > * {
+  scroll-snap-align: start;
 }
 </style>

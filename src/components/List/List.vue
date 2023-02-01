@@ -189,7 +189,7 @@ export default {
         images: this.flower.images
       });
       this.flowers = [...this.flowers, res.data];
-      window.location.reload();
+      // window.location.reload();
       this.createFlower = !this.createFlower;
     },
 
