@@ -98,7 +98,7 @@
 
       <div class="div-buttons">
         <button class="button-59" @click="close">Cancelar</button>
-        <button class="button-59" @click="addItem()">Salvar</button>
+        <button class="button-59" @click="addItem()" :disabled="submit" >Salvar</button>
       </div>
     </div>
 
@@ -219,8 +219,10 @@ export default {
           images: this.flower.images
         });
         this.flowers = [...this.flowers, res.data];
-        window.location.reload();
         this.createFlower = !this.createFlower;
+        setTimeout(function() {
+          window.location.reload(1);
+        }, 1000);
       }
     },
 

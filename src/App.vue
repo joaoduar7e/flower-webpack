@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { routes } from './routes';
+import routes  from './routes';
 import List from "./components/List/List.vue";
 
 export default {

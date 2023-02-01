@@ -13,6 +13,7 @@
         <label class="type-title">Nome científico</label>
         <p class="type-info">{{ flower.authors }}</p>
       </div>
+      
       <div class="info">
         <label v-show="flower.description != ''"  class="type-title">Sobre</label>
         <p class="type-info" v-html="flower.description" ></p>
